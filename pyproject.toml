@@ -25,6 +25,7 @@ python = "^3.7"
 python_dateutil = "2.8.1"
 pytz = "^2020"
 tzlocal = "2.0.0"
+azure-devops = "^6.0.0-beta.4"
 
 [tool.poetry.dev-dependencies]
 black = "^19.10b0"

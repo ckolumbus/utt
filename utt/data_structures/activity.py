@@ -11,7 +11,13 @@ class Activity:
         IGNORED = 2
 
     def __init__(
-        self, name: str, start: datetime, end: datetime, is_current_activity: bool, comment: str = None,
+        self,
+        name: str,
+        start: datetime,
+        end: datetime,
+        is_current_activity: bool,
+        comment: str = None,
+        tags: list = None,
     ):
         self.name = Name(name)
         self.start = start
@@ -20,6 +26,7 @@ class Activity:
         self.type = Activity._type_from_name(name)
         self.is_current_activity = is_current_activity
         self.comment = comment
+        self.tags = tags
 
     def __eq__(self, other):
         return (
@@ -28,6 +35,7 @@ class Activity:
             and self.end == other.end
             and self.duration == other.duration
             and self.type == other.type
+            and self.tags == other.tags
         )
 
     def __str__(self):
