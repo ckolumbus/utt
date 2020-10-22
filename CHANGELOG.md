@@ -1,3 +1,10 @@
+## 1.28-ckol (wip)
+
+  * add sqlite based in memory sql model
+  * add tag support within comments
+  * add tag command for tag specific reporting
+  * adjust standard report to include tags info (with --details & --comments)
+
 ## 1.27 (2020-08-29)
 
   * Update pytz
