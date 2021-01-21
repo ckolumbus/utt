@@ -27,9 +27,10 @@ def _groupby_name(activities: List[Activity]) -> List[Dict]:
         s = sum((act.duration for act in activities), timedelta())
         result.append(
             {
-                "project": project,
-                "duration": "{:5.1%}".format(s/activities_sum),
+                "duration": formatter.format_duration(s),
+                "duration_ratio": "{:5.1%}".format(s/activities_sum),
                 "duration_full": formatter.format_duration(s) + " - {:5.1%}".format(s/activities_sum),
+                "project": project,
                 "name": ", ".join(sorted(set(act.name.task for act in activities))),
             }
         )

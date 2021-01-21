@@ -9,7 +9,7 @@ from ..data_structures.activity import Activity
 
 
 def print_dicts(dcts: List[Dict], output: Output) -> None:
-    format_string = "({duration}) {project:<{projects_max_length}}: {name}"
+    format_string = "({duration_full}) {project:<{projects_max_length}}: {name}"
 
     projects = (dct["project"] for dct in dcts)
     projects_max_length = max(itertools.chain([0], (len(project) for project in projects)))
