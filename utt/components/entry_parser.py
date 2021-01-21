@@ -10,7 +10,7 @@ DATE_REGEX = r"(?P<date>\d{4}-\d{1,2}-\d{1,2}\s+\d{1,2}:\d{1,2})"
 TIMEZONE_REGEX = r"(?P<timezone>[+-]{1}\d{2}:{0,1}\d{2})"
 NAME_REGEX = r"\s+(?P<name>[^\s].*?)"
 COMMENT_REGEX = r"\s{2}#\s(?P<comment>.*$)?"
-COMMENT_TAGS_REGEX = r"(^|\s)#(?P<tag>.*?):(?P<value>.*?)(?=\s|$)"
+COMMENT_TAGS_REGEX = r"(^|\s)@(?P<tag>.*?):(?P<value>.*?)(?=\s|$)"
 
 WITH_TZ = re.compile("".join([DATE_REGEX, TIMEZONE_REGEX, NAME_REGEX, r"($|", COMMENT_REGEX, ")"]))
 
