@@ -53,7 +53,7 @@ class TagSummarySubView:
         tag_max_length = max(itertools.chain([0], (len(dcts[key]["tag"]) for key in dcts)))
         for key in dict(sorted(dcts.items(), key=lambda item: item[0])):
             if (not self._detailedReport):
-                if (dcts[key]["tag"] not in ["t", "w"]):
+                if (dcts[key]["tag"] not in ["t", "w", "adhoc"]):
                     continue
             dct = dcts[key]
             context = {"tag_max_length": tag_max_length}
