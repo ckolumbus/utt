@@ -13,4 +13,5 @@ class ProjectsView:
         print(formatter.title("Projects"), file=output)
         print(file=output)
 
-        print_dicts(self._model.projects, output)
+        fmt = "({duration_ratio}) {project:<{projects_max_length}}: {name}"
+        print_dicts(self._model.projects, output, fmt)
