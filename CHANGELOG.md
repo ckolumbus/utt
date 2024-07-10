@@ -1,3 +1,10 @@
+## 1.30-ckol (wip)
+
+  * add sqlite based in memory sql model
+  * add tag support within comments
+  * add tag command for tag specific reporting
+  * adjust standard report to include tags info (with --details & --comments)
+
 ## 1.30 (2024-01-17)
 
   * Add 'per-task' CSV report type
