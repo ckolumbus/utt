@@ -12,18 +12,24 @@ class ProjectsModel:
         self.projects = groupby_project(filter_activities_by_type(activities, Activity.Type.WORK))
 
 
+def duration(activities: List[Activity]) -> datetime.timedelta:
+    return sum((act.duration for act in activities), datetime.timedelta())
+
 def groupby_project(activities: List[Activity]) -> List[Dict]:
     def key(act):
         return act.name.project
 
     result = []
     sorted_activities = sorted(activities, key=key)
+    activities_sum = sum((act.duration for act in activities), datetime.timedelta())
 
     for project, activities in itertools.groupby(sorted_activities, key):
         activities = list(activities)
+        s = sum((act.duration for act in activities), datetime.timedelta())
         result.append(
             {
-                "duration": formatter.format_duration(sum((act.duration for act in activities), datetime.timedelta())),
+                "duration": "{:5.1%}".format(s/activities_sum),
+                "duration_full": formatter.format_duration(s) + " - {:5.1%}".format(s/activities_sum),
                 "project": project,
                 "name": ", ".join(
                     sorted(
