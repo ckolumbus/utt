@@ -8,8 +8,11 @@ from ..components.output import Output
 from ..data_structures.activity import Activity
 
 
-def print_dicts(dcts: List[Dict], output: Output) -> None:
-    format_string = "({duration_full}) {project:<{projects_max_length}}: {name}"
+def print_dicts(dcts: List[Dict], output: Output, fmt=None) -> None:
+    if fmt:
+        format_string=fmt
+    else:
+        format_string = "({duration}) {project:<{projects_max_length}}: {name}"
 
     projects = (dct["project"] for dct in dcts)
     projects_max_length = max(itertools.chain([0], (len(project) for project in projects)))
