@@ -28,7 +28,8 @@ def groupby_project(activities: List[Activity]) -> List[Dict]:
         s = sum((act.duration for act in activities), datetime.timedelta())
         result.append(
             {
-                "duration": "{:5.1%}".format(s/activities_sum),
+                "duration": formatter.format_duration(s),
+                "duration_ratio": "{:5.1%}".format(s/activities_sum),
                 "duration_full": formatter.format_duration(s) + " - {:5.1%}".format(s/activities_sum),
                 "project": project,
                 "name": ", ".join(
