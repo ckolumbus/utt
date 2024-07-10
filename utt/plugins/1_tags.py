@@ -152,8 +152,11 @@ class TagReportView(_v1.ReportView):
             if r[1] == WORKTIEM_QUERY_TAG:
                 r += (self._azdo_wi.get_work_item(int(r[2])),)
             # duration stored in seconds 
+            duration = timedelta(seconds=int(r[0]))
+            ratio    = duration / work_sum
             cond_sum += timedelta(seconds=int(r[0]))
-            print(f"{strfdelta(timedelta(seconds=int(r[0]))):>12} {r[1]:<4}: {r[2]}", file=output)
+            #print(f"{strfdelta(duration):>12} {ratio:5.1%} {r[1]:<4}: {r[2]}", file=output)
+            print(f"{formatter.format_duration(duration):>12} {ratio:5.1%} {r[1]:<4}: {r[2]}", file=output)
 
         print(file=output)
         print(f"Aggregate Tag Sum (incl. double counts): {strfdelta(cond_sum):>12}" , file=output) 
