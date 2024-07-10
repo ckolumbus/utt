@@ -19,7 +19,14 @@ class Entry:
     def __str__(self):
         str_components = [self.datetime.strftime("%Y-%m-%d %H:%M%z"), self.name]
 
+        if self.comment or self.tags:
+            str_components.append(" # ")
+
         if self.comment:
-            str_components.append("".join([" # ", self.comment]))
+            str_components.append(self.comment)
+
+        if self.tags:
+            tag_str = " ".join([ f"@{t[0]}:{t[1]}" for t in self.tags ])
+            str_components.append(tag_str)
 
         return " ".join(str_components)
