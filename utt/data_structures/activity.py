@@ -24,6 +24,10 @@ class Activity:
         end: datetime,
         is_current_activity: bool,
         comment: str = None,
+<<<<<<< HEAD
+=======
+        tags: list = None,
+>>>>>>> 645da94 (new: tag supprt, sql model, AzDO query)
     ):
         self.name = Name(name)
         self.start = start
@@ -32,6 +36,7 @@ class Activity:
         self.type = Activity._type_from_name(name)
         self.is_current_activity = is_current_activity
         self.comment = comment
+        self.tags = tags
 
     def __eq__(self, other):
         return (
@@ -40,6 +45,7 @@ class Activity:
             and self.end == other.end
             and self.duration == other.duration
             and self.type == other.type
+            and self.tags == other.tags
         )
 
     def __str__(self):

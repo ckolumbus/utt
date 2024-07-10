@@ -29,6 +29,10 @@ class DetailsView:
             format_str = " ".join([format_str, " # %s"])
             line.append(activity.comment)
 
+        if self._show_comments and activity.tags:
+            format_str = " ".join([format_str, " ( %s )"])
+            line.append(", ".join([f"{t[0]}:{t[1]}" for t in activity.tags]))
+
         return format_str % tuple(line)
 
     def render(self, output: Output) -> None:

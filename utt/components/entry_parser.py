@@ -10,9 +10,13 @@ DATE_REGEX = r"(?P<date>\d{4}-\d{1,2}-\d{1,2}\s+\d{1,2}:\d{1,2})"
 TIMEZONE_REGEX = r"(?P<timezone>[+-]{1}\d{2}:{0,1}\d{2})"
 NAME_REGEX = r"\s+(?P<name>[^\s].*?)"
 COMMENT_REGEX = r"\s{2}#\s(?P<comment>.*$)?"
+COMMENT_TAGS_REGEX = r"(^|\s)#(?P<tag>.*?):(?P<value>.*?)(?=\s|$)"
+
 WITH_TZ = re.compile("".join([DATE_REGEX, TIMEZONE_REGEX, NAME_REGEX, r"($|", COMMENT_REGEX, ")"]))
 
 WITHOUT_TZ = re.compile("".join([DATE_REGEX, NAME_REGEX, r"($|", COMMENT_REGEX, ")"]))
+
+TAGS = re.compile(COMMENT_TAGS_REGEX)
 
 
 class EntryParser:
@@ -42,4 +46,16 @@ class EntryParser:
 
         name = groupdict["name"]
         comment = groupdict.get("comment")
-        return Entry(date, name, False, comment=comment)
+
+        if comment:
+            match_tags = TAGS.findall(comment)
+            tags = [(t, v) for s, t, v in match_tags]
+            comment = TAGS.sub("", comment).strip()
+
+            # if comment is empty after tags are removed
+            if not comment.strip():
+                comment = None
+        else:
+            tags = None
+
+        return Entry(date, name, False, comment=comment, tags=tags)

@@ -19,12 +19,22 @@ name = "utt"
 version = "0"                                                # Do not change. Updated by a script.
 
 [tool.poetry.dependencies]
-argcomplete = "^3.2.1"
-cargo = "^0.3"
-python = "^3.8.1"
-python_dateutil = "^2.8.1"
-pytz = "^2023.3.post1"
-tzlocal = "^5.2"
+argcomplete = "1.11.1"
+cargo = "0.3"
+python = "^3.7"
+python_dateutil = "2.8.1"
+pytz = "^2020"
+tzlocal = "2.0.0"
+azure-devops = "^6.0.0-beta.4"
+
+[tool.poetry.dev-dependencies]
+black = "^19.10b0"
+ddt = "==1.2.2"
+flake8 = "^3.7.9"
+isort = "5.0.9"
+mypy = "^0.770"
+pytest = "^5.2"
+requests = "^2.23.0"
 
 [tool.poetry.scripts]
 utt = "utt.__main__:main"

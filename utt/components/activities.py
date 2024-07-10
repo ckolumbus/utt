@@ -95,6 +95,7 @@ def _activities(entries: Entries):
             next_entry.datetime,
             False,
             comment=next_entry.comment,
+            tags=next_entry.tags,
         )
         yield activity
 
